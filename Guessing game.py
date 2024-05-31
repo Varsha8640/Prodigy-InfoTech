@@ -1,35 +1,27 @@
-def celsius_to_fahrenheit(celsius):
-  return (celsius * 9/5) + 32
+import random
 
-def celsius_to_kelvin(celsius):
-  return celsius + 273.15
+def guessing_game():
+  number = random.randint(1, 100)
+  attempts = 0
 
-def fahrenheit_to_celsius(fahrenheit):
-  return (fahrenheit - 32) * 5/9
+  print("Welcome to the guessing game!")
+  print("I've chosen a number between 1 and 100.")
 
-def fahrenheit_to_kelvin(fahrenheit):
-  return (fahrenheit - 32) * 5/9 + 273.15
+  while True:
+    try:
+      guess = int(input("Enter your guess: "))
+      attempts += 1
+    except ValueError:
+      print("Invalid input. Please enter a number.")
+      continue
 
-def kelvin_to_celsius(kelvin):
-  return kelvin - 273.15
+    if guess < number:
+      print("Too low! Try again.")
+    elif guess > number:
+      print("Too high! Try again.")
+    else:
+      print(f"Congratulations! You guessed it in {attempts} attempts!")
+      break
 
-def kelvin_to_fahrenheit(kelvin):
-  return (kelvin - 273.15) * 9/5 + 32
-
-temperature = float(input("Enter the temperature: "))
-unit = input("Enter the unit (C, F, or K): ")
-
-if unit == 'C':
-  fahrenheit = celsius_to_fahrenheit(temperature)
-  kelvin = celsius_to_kelvin(temperature)
-  print(f"{temperature} degrees Celsius is equal to {fahrenheit} degrees Fahrenheit and {kelvin} Kelvin.")
-elif unit == 'F':
-  celsius = fahrenheit_to_celsius(temperature)
-  kelvin = fahrenheit_to_kelvin(temperature)
-  print(f"{temperature} degrees Fahrenheit is equal to {celsius} degrees Celsius and {kelvin} Kelvin.")
-elif unit == 'K':
-  celsius = kelvin_to_celsius(temperature)
-  fahrenheit = kelvin_to_fahrenheit(temperature)
-  print(f"{temperature} Kelvin is equal to {celsius} degrees Celsius and {fahrenheit} degrees Fahrenheit.")
-else:
-  print("Invalid unit.")
+if __name__ == "__main__":
+  guessing_game()
